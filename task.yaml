@@ -1,0 +1,22 @@
+tasks:
+  - agent: agent1
+    description: Manages DB1 (db1_stanza)
+    parameters:
+      mcp_script: "http://${SERVER1_HOST}:${SERVER1_MCP_PORT}/mcp"
+      db_name: "${SERVER1_STANZA}"
+      stanza: "${SERVER1_STANZA}"
+      user: "${SERVER1_USER}"
+      password: "${SERVER1_PASSWORD}"
+      pgbackrest_config: "/etc/pgbackrest/pgbackrest.conf"
+      #pgbackrest_config: "C:\\pgbackrest\\pgbackrest.conf"
+
+  - agent: agent2
+    description: Manages DB2 (db2_stanza)
+    parameters:
+      mcp_script: "http://${SERVER2_HOST}:${SERVER2_MCP_PORT}/mcp"
+      db_name: "${SERVER2_STANZA}"
+      stanza: "${SERVER2_STANZA}"
+      user: "${SERVER2_USER}"
+      password: "${SERVER2_PASSWORD}"
+      pgbackrest_config: "/etc/pgbackrest/pgbackrest.conf"
+      #pgbackrest_config: "C:\\pgbackrest\\pgbackrest.conf"
