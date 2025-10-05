@@ -1,0 +1,9 @@
+# Database
+psycopg2-binary>=2.9
+
+# Utilities
+python-dotenv>=1.0    # If you use .env files for configuration
+PyYAML>=6.0           # For reading task.yaml or config YAMLs
+
+# Optional system utilities (called via subprocess, not pip)
+# pgbackrest is system-level; don't include here

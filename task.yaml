@@ -1,22 +1,59 @@
 tasks:
-  - agent: agent1
-    description: Manages DB1 (db1_stanza)
-    parameters:
-      mcp_script: "http://${SERVER1_HOST}:${SERVER1_MCP_PORT}/mcp"
-      db_name: "${SERVER1_STANZA}"
-      stanza: "${SERVER1_STANZA}"
-      user: "${SERVER1_USER}"
-      password: "${SERVER1_PASSWORD}"
-      pgbackrest_config: "/etc/pgbackrest/pgbackrest.conf"
-      #pgbackrest_config: "C:\\pgbackrest\\pgbackrest.conf"
+  # ------------------
+  # Cluster-level backups
+  # ------------------
+  - id: backup_pg1
+    description: "Perform a backup (full or incremental) on all databases in PG1 cluster."
+    actions:
+      - agent: backup_restore_pg1
+        action: backup
 
-  - agent: agent2
-    description: Manages DB2 (db2_stanza)
-    parameters:
-      mcp_script: "http://${SERVER2_HOST}:${SERVER2_MCP_PORT}/mcp"
-      db_name: "${SERVER2_STANZA}"
-      stanza: "${SERVER2_STANZA}"
-      user: "${SERVER2_USER}"
-      password: "${SERVER2_PASSWORD}"
-      pgbackrest_config: "/etc/pgbackrest/pgbackrest.conf"
-      #pgbackrest_config: "C:\\pgbackrest\\pgbackrest.conf"
+  - id: backup_pg2
+    description: "Perform a backup (full or incremental) on all databases in PG2 cluster."
+    actions:
+      - agent: backup_restore_pg2
+        action: backup
+
+  - id: backup_both
+    description: "Perform a backup on both PG1 and PG2 clusters."
+    actions:
+      - agent: backup_restore_pg1
+        action: backup
+      - agent: backup_restore_pg2
+        action: backup
+
+  # ------------------
+  # Restore backups
+  # ------------------
+  - id: restore_pg1
+    description: "Restore PG1 cluster from a backup."
+    inputs:
+      - name: backup_name
+        type: string
+    actions:
+      - agent: backup_restore_pg1
+        action: restore
+
+  - id: restore_pg2
+    description: "Restore PG2 cluster from a backup."
+    inputs:
+      - name: backup_name
+        type: string
+    actions:
+      - agent: backup_restore_pg2
+        action: restore
+
+  # ------------------
+  # List backups
+  # ------------------
+  - id: list_pg1
+    description: "List available backups for PG1 cluster."
+    actions:
+      - agent: backup_restore_pg1
+        action: list
+
+  - id: list_pg2
+    description: "List available backups for PG2 cluster."
+    actions:
+      - agent: backup_restore_pg2
+        action: list

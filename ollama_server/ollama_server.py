@@ -1,3 +1,4 @@
+psql -h 127.0.0.1 -U postgres -d postgres
 from flask import Flask, request, jsonify
 import requests
 import os

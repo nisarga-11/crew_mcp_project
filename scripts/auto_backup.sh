@@ -1,3 +1,4 @@
+export PGBACKREST_CONF=~/pgbackrest/pgbackrest.conf
 #!/bin/bash
 LOG_DIR=~/crew_mcp_project/crew_mcp_project/logs/backup_logs
 mkdir -p $LOG_DIR

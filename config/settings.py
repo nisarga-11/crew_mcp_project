@@ -1,3 +1,8 @@
+# For pg1_17
+sudo -u postgres pgbackrest --stanza=pg1_17 --repo1-path=/home/nisarga/crew_mcp_project/crew_mcp_project/backups/agent1 stanza-create
+
+# For pg2_17
+sudo -u postgres pgbackrest --stanza=pg2_17 --repo1-path=/home/nisarga/crew_mcp_project/crew_mcp_project/backups/agent2 stanza-create
 # settings.py
 import os
 from typing import Dict, Any

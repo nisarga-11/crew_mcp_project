@@ -1,0 +1,25 @@
+[project]
+name = "postgresql-backup-crew"
+version = "0.1.0"
+description = "Crew to manage PG1 and PG2 backups via MCP agents"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "crewai",
+    "crewai-tools",
+    "psycopg2-binary",
+    "pgbackrest",
+]
+
+[tool.crew]
+# CrewAI will use this task file by default
+entry_point = "task.yaml"
+
+[tool.crew.agents]
+# Declare your agents so CrewAI can load them automatically when you run `crewai run`
+agent1 = "agent1.backup_restore_agent1:agent"
+agent2 = "agent2.backup_restore_agent2:agent"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
